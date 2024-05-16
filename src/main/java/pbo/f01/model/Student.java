@@ -59,4 +59,9 @@ public class Student {
     public String toString() {
         return id + "|" + name + "|" + entranceYear ;
     }
+
+    public String getYear() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getYear'");
+    }
 }
