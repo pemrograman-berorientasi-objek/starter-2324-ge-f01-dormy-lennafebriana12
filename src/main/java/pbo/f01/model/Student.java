@@ -1,42 +1,39 @@
 package pbo.f01.model;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-
-/**
- * 12S22008 - Rahel Simanjuntak
- * 12S22017 - Lenna Febriana
- */
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Student")
 public class Student {
- @Id
- @column (name = "id", nullable = false, length = 255)
- private String id;
- @column (name = "name", nullable = false, length = 255)
- private String name;
- @column (name = "entranceYear", nullable = false, length = 255)
- private int entranceYear;
- @column (name = "gender", nullable = false, length = 255)
-private String gender;
+    @Id
+    @Column(name = "id", nullable = false, length = 255)
+    private String id;
+    
+    @Column(name = "name", nullable = false, length = 255)
+    private String name;
+    
+    @Column(name = "entranceYear", nullable = false)
+    private int entranceYear;
+    
+    @Column(name = "gender", nullable = false, length = 255)
+    private String gender;
 
-public Student(){
-    //empty
-}
+    @ManyToOne
+    @JoinColumn(name = "dorm_id")
+    private Dorm dorm;
 
-public Student(String id, String name, int entranceYear, String gender) {
-    this.id = id;
-    this.name = name;
-    this.entranceYear = entranceYear;
-    this.gender = gender;
-}
+    public Student() {}
 
-public String getId() {
-    return id;
-}
+    public Student(String id, String name, int entranceYear, String gender) {
+        this.id = id;
+        this.name = name;
+        this.entranceYear = entranceYear;
+        this.gender = gender;
+    }
+
+    public String getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -48,5 +45,18 @@ public String getId() {
 
     public String getGender() {
         return gender;
+    }
+
+    public Dorm getDorm() {
+        return dorm;
+    }
+
+    public void setDorm(Dorm dorm) {
+        this.dorm = dorm;
+    }
+
+    @Override
+    public String toString() {
+        return id + "|" + name + "|" + entranceYear ;
     }
 }
